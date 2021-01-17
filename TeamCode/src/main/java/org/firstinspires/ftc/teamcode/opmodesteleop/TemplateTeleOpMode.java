@@ -12,6 +12,6 @@ public class TemplateTeleOpMode extends OpMode {
     }
 
     public void loop() {
-        telemetry.addData("test", "yes");
+        
     }
 }
