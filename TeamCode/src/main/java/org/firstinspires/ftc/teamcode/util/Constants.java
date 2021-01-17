@@ -36,9 +36,4 @@ public class Constants {
     public static final int X_AXIS = 0; //Just an ID for axes, use this number for DeadzonedAxis.
     public static final int Y_AXIS = 1;
 
-    public enum OpModeType {
-        TELEOP,
-        AUTO
-    }
-
 }
