@@ -1,15 +1,13 @@
 package org.firstinspires.ftc.teamcode.mechanisms.basicmechanisms;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class DeadzonedController {
-    private OpMode currentOpMode;
-    private int controllerNum;
+    private Gamepad gamepad;
     private double deadzone;
 
-    public DeadzonedController(OpMode opMode, int controllerNum, double deadzone) {
-        this.currentOpMode = opMode;
-        this.controllerNum = controllerNum;
+    public DeadzonedController(Gamepad gamepad, double deadzone) {
+        this.gamepad = gamepad;
         this.deadzone = deadzone;
     }
 
@@ -18,82 +16,38 @@ public class DeadzonedController {
     }
 
     public double getLeftXAxis() {
-        switch (controllerNum) {
-            case 1:
-                if (GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad1.left_stick_x / GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y));
-                }
-            case 2:
-                if (GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad2.left_stick_x / GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y));
-                }
+        if (GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y) <= deadzone) {
+            return 0;
+        } else {
+            return ((GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y) - deadzone) / (1 - deadzone))
+                    * (gamepad.left_stick_x / GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y));
         }
-        return 0;
     }
 
     public double getLeftYAxis() {
-        switch (controllerNum) {
-            case 1:
-                if (GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad1.left_stick_y / GetHypotenuse(currentOpMode.gamepad1.left_stick_x, currentOpMode.gamepad1.left_stick_y));
-                }
-            case 2:
-                if (GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad2.left_stick_y / GetHypotenuse(currentOpMode.gamepad2.left_stick_x, currentOpMode.gamepad2.left_stick_y));
-                }
+        if (GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y) <= deadzone) {
+            return 0;
+        } else {
+            return ((GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y) - deadzone) / (1 - deadzone))
+                    * (gamepad.left_stick_y / GetHypotenuse(gamepad.left_stick_x, gamepad.left_stick_y));
         }
-        return 0;
     }
 
     public double getRightXAxis() {
-        switch (controllerNum) {
-            case 1:
-                if (GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad1.right_stick_x / GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y));
-                }
-            case 2:
-                if (GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad2.right_stick_x / GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y));
-                }
+        if (GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y) <= deadzone) {
+            return 0;
+        } else {
+            return ((GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y) - deadzone) / (1 - deadzone))
+                    * (gamepad.right_stick_x / GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y));
         }
-        return 0;
-    }
+}
 
     public double getRightYAxis() {
-        switch (controllerNum) {
-            case 1:
-                if (GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad1.right_stick_y / GetHypotenuse(currentOpMode.gamepad1.right_stick_x, currentOpMode.gamepad1.right_stick_y));
-                }
-            case 2:
-                if (GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y) <= deadzone) {
-                    return 0;
-                } else {
-                    return ((GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y) - deadzone) / (1 - deadzone))
-                            * (currentOpMode.gamepad2.right_stick_y / GetHypotenuse(currentOpMode.gamepad2.right_stick_x, currentOpMode.gamepad2.right_stick_y));
-                }
+        if (GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y) <= deadzone) {
+            return 0;
+        } else {
+            return ((GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y) - deadzone) / (1 - deadzone))
+                    * (gamepad.right_stick_y / GetHypotenuse(gamepad.right_stick_x, gamepad.right_stick_y));
         }
-        return 0;
     }
 }

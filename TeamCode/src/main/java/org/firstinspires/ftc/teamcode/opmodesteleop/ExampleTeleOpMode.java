@@ -10,11 +10,18 @@ import static org.firstinspires.ftc.teamcode.util.Constants.*;
 
 @TeleOp
 public class ExampleTeleOpMode extends OpMode {
+    //Tells the code that an ExampleRobot named robot actually exists
     private ExampleRobot robot = new ExampleRobot();
-    //Remember to set the example servo to its "closed" position before running this opmode to make sure this line is valid
+
+    //Remember to set the example servo to its "closed" position before running this OpMode to make sure this line is valid
     private boolean exampleServoOpen = false;
 
+    //Initializes the driver controller for general usage, with "User 1" being gamepad1 and "User 2" being gamepad2.
+    DeadzonedController DriverController = new DeadzonedController(gamepad1, CONTROLLER_1_DEADZONE);
+    DeadzonedController OperatorController = new DeadzonedController(gamepad2, CONTROLLER_2_DEADZONE);
+
     // Code to run when the driver hits INIT
+    //Here, it tells the code to initialize the robot on the hardwareMap. And yes, the real local OpMode reference to the HardwareMap is called "hardwareMap".
     @Override
     public void init() {
         robot.init(hardwareMap);
@@ -22,9 +29,6 @@ public class ExampleTeleOpMode extends OpMode {
 
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
     public void loop() {
-
-        //Initializes the driver controller for general usage, assuming that the driver controller is User 1 and the Operator controller is User 2.
-        DeadzonedController DriverController = new DeadzonedController(this, 1, CONTROLLER_1_DEADZONE);
 
         //Sets a bunch of booleans to false every cycle; you'll see why on the A pressed loop.
         boolean aPressed = false;
@@ -41,7 +45,7 @@ public class ExampleTeleOpMode extends OpMode {
 
         //This opens the exampleServo if the A button is held down. If you want it to be on a toggle,
         //you'll need some more logic to check it across code cycles to make sure it doesn't spam
-        //open/closed while you're holding it down. I wonder why I initialized those booleans for each button's previous state...?
+        //open/closed while you're holding it down. I wonder why I initialized those booleans for each button's previous state...? (Check Randy's Wisdom for further example code.)
         if (gamepad1.a) {
             robot.openExampleServo();
         } else {
